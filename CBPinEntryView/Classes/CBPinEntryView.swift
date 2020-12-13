@@ -76,6 +76,8 @@ public protocol CBPinEntryViewDelegate: class {
             }
         }
     }
+    
+    @IBInspectable open var entryErrorTextColour: UIColor = CBPinEntryViewDefaults.entryErrorColour
 
     @IBInspectable open var entryTextColour: UIColor = CBPinEntryViewDefaults.entryTextColour {
         didSet {
@@ -264,6 +266,7 @@ public protocol CBPinEntryViewDelegate: class {
                     button.layer.borderColor = entryErrorBorderColour.cgColor
                     button.layer.borderWidth = entryBorderWidth
                 }
+                button.setTitleColor(entryErrorTextColour, for: .normal)
             }
         } else {
             errorMode = false
@@ -271,9 +274,10 @@ public protocol CBPinEntryViewDelegate: class {
                 if isUnderlined {
                     button.viewWithTag(9999)?.backgroundColor = entryDefaultBorderColour
                 } else {
-                button.layer.borderColor = entryDefaultBorderColour.cgColor
-                button.backgroundColor = entryBackgroundColour
+                    button.layer.borderColor = entryDefaultBorderColour.cgColor
+                    button.backgroundColor = entryBackgroundColour
                 }
+                button.setTitleColor(entryTextColour, for: .normal)
             }
         }
     }
